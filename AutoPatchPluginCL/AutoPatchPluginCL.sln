@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29920.165
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPatchPluginCL", "AutoPatchPluginCL\AutoPatchPluginCL.csproj", "{8FB893C3-A4F8-47AD-A59C-546266A3D177}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPatchPluginCLCore", "AutoPatchPluginCLCore\AutoPatchPluginCLCore.csproj", "{11C7689F-822A-40BA-9AE0-270EBC5AB05E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FB893C3-A4F8-47AD-A59C-546266A3D177}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB893C3-A4F8-47AD-A59C-546266A3D177}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB893C3-A4F8-47AD-A59C-546266A3D177}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB893C3-A4F8-47AD-A59C-546266A3D177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11C7689F-822A-40BA-9AE0-270EBC5AB05E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11C7689F-822A-40BA-9AE0-270EBC5AB05E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11C7689F-822A-40BA-9AE0-270EBC5AB05E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11C7689F-822A-40BA-9AE0-270EBC5AB05E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E75360C-B89C-4DE2-9C49-0DF198E8573B}
+	EndGlobalSection
+EndGlobal
