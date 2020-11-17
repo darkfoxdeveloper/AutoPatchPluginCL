@@ -13,3 +13,10 @@ AutoPatch Plugin for ConquerLoader
 4- Modify the AutoPatchPluginCLConfig.json and change the parameter PatchListUrl with your domain or if only is for testing you can use localhost, exemple: http://localhost/PatchList.json
 \
 5- All ready!
+
+## Compatible patch formats
+- Rar
+- Zip
+- 7-Zip
+- GZip
+- Tar
