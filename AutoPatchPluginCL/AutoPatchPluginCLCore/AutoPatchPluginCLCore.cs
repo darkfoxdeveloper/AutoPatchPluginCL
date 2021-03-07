@@ -1,10 +1,11 @@
-﻿using ConquerLoader.CLCore;
-using System.Collections.Generic;
+﻿using CLCore;
+using ConquerLoader.CLCore;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace AutoPatchPluginCLCore
 {
-	public class AutoPatchPluginCLCore : IPlugin
+    public class AutoPatchPluginCLCore : IPlugin
 	{
 		public string Explanation
 		{
@@ -21,19 +22,21 @@ namespace AutoPatchPluginCLCore
 				return "AutoPatchPluginCLCore";
 			}
 		}
+		public PluginType PluginType { get; } = PluginType.FREE;
 
-		public LoadType LoadType
+		public void Init()
 		{
-			get
-			{
-				return LoadType.ON_FORM_LOAD;
-			}
+            CLCore.LoaderEvents.LauncherLoaded += LoaderEvents_LauncherLoaded;
 		}
-		public List<Parameter> Parameters { get; set; }
 
-		public void Run()
+        private void LoaderEvents_LauncherLoaded()
 		{
 			Process.Start("AutoPatchPluginCL.exe").WaitForExit();
+		}
+
+        public void Configure()
+		{
+			MessageBox.Show($"Not required configuration yet!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 	}
 }
