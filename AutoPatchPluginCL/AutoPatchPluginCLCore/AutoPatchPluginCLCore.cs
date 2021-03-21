@@ -1,5 +1,4 @@
 ﻿using CLCore;
-using ConquerLoader.CLCore;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -26,7 +25,7 @@ namespace AutoPatchPluginCLCore
 
 		public void Init()
 		{
-            CLCore.LoaderEvents.LauncherLoaded += LoaderEvents_LauncherLoaded;
+            LoaderEvents.LauncherLoaded += LoaderEvents_LauncherLoaded;
 		}
 
         private void LoaderEvents_LauncherLoaded()
