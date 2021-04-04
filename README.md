@@ -2,7 +2,7 @@
 AutoPatch Plugin for ConquerLoader
 
 ## Requeriments
-- ConquerLoader 1.0.0.2 or upper (1.0.0.2+)
+- ConquerLoader 1.0.0.5 or upper (1.0.0.5+)
 - Knowledge about JSON
 - A little intelligence (:P)
 
