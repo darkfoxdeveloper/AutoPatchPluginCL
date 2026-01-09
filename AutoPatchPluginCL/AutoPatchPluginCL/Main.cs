@@ -5,51 +5,80 @@ using SharpCompress.Archives;
 using SharpCompress.Common;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Windows.Forms;
 
 namespace AutoPatch
 {
     public partial class Main : MetroFramework.Forms.MetroForm
     {
-        public Main()
-        {
-            InitializeComponent();
-        }
-
         private AutoPatchConfig AutoPatchConfig = null;
         private PatchList PatchList = null;
         private readonly WebClient client = new WebClient();
         private bool AnyPatchApplied = false;
+        private LayoutEditor _editor;
+        private readonly string _layoutPath = Path.Combine("layout.json");
+        private bool _editorEnabled;
+        public Main(string[] args)
+        {
+            InitializeComponent();
+            _editor = new LayoutEditor(this);
+            _editor.Enable(false);
+            _editor.SnapToGrid = true;
+            _editor.GridSize = 5;
+            LoadLayout();
+            if ((args.Length > 0 && args[0] == "--edit-layout") || Debugger.IsAttached)
+            {
+                var enable = !_editorEnabled;
+                _editorEnabled = enable;
+                _editor.Enable(enable);
+            }
+        }
+
+        private void LoadLayout()
+        {
+            var cfg = LayoutSerializer.Load(_layoutPath);
+            LayoutSerializer.Apply(this, cfg);
+        }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            // Start Autopatcher
-
-            if (File.Exists("AutoPatchPluginCLConfig.json"))
+            if (_editorEnabled)
             {
-                AutoPatchConfig = JsonConvert.DeserializeObject<AutoPatchConfig>(File.ReadAllText("AutoPatchPluginCLConfig.json"));
+                lblStatus.Text = "Edit mode ready. Right click to see options (Save, etc).";
+                btnPlay.Enabled = true;
             } else
             {
-                AutoPatchConfig config = new AutoPatchConfig
+                // Start Autopatcher
+                if (File.Exists("AutoPatchPluginCLConfig.json"))
                 {
-                    CurrentVersion = 0,
-                    PatchListUrl = "http://localhost/PatchList.json"
-                };
-                File.WriteAllText("AutoPatchPluginCLConfig.json", JsonConvert.SerializeObject(config, Formatting.Indented));
-                AutoPatchConfig = config;
-            }
-            lblCurrentVer.Text = "Current version: " + AutoPatchConfig.CurrentVersion.ToString();
-            if (ValidURL(AutoPatchConfig.PatchListUrl))
-            {
-                bgWorkerAutoPatch.DoWork += BgWorkerAutoPatch_DoWork;
-                bgWorkerAutoPatch.ProgressChanged += BgWorkerAutoPatch_ProgressChanged;
-                bgWorkerAutoPatch.RunWorkerCompleted += BgWorkerAutoPatch_RunWorkerCompleted;
-                bgWorkerAutoPatch.RunWorkerAsync();
-            } else
-            {
-                MetroMessageBox.Show(this, "Invalid URL of Path List", "Auto Patch for ConquerLoader", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                    AutoPatchConfig = JsonConvert.DeserializeObject<AutoPatchConfig>(File.ReadAllText("AutoPatchPluginCLConfig.json"));
+                }
+                else
+                {
+                    AutoPatchConfig config = new AutoPatchConfig
+                    {
+                        CurrentVersion = 0,
+                        PatchListUrl = "http://localhost/PatchList.json"
+                    };
+                    File.WriteAllText("AutoPatchPluginCLConfig.json", JsonConvert.SerializeObject(config, Formatting.Indented));
+                    AutoPatchConfig = config;
+                }
+                lblCurrentVer.Text = "Current version: " + AutoPatchConfig.CurrentVersion.ToString();
+                if (ValidURL(AutoPatchConfig.PatchListUrl))
+                {
+                    bgWorkerAutoPatch.DoWork += BgWorkerAutoPatch_DoWork;
+                    bgWorkerAutoPatch.ProgressChanged += BgWorkerAutoPatch_ProgressChanged;
+                    bgWorkerAutoPatch.RunWorkerCompleted += BgWorkerAutoPatch_RunWorkerCompleted;
+                    bgWorkerAutoPatch.RunWorkerAsync();
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, "Invalid URL of Path List", "Auto Patch for ConquerLoader", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -132,6 +161,30 @@ namespace AutoPatch
         private void BtnPlay_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void LblStatus_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void SaveLayoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var cfg = LayoutSerializer.Capture(this);
+            LayoutSerializer.Save(_layoutPath, cfg);
+            MessageBox.Show("Saved successfully.", "AutoPatchPluginCL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ShowHideTitleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var cfg = LayoutSerializer.Capture(this);
+            cfg.ShowFormTitle = !cfg.ShowFormTitle;
+            LayoutSerializer.Save(_layoutPath, cfg);
+            MessageBox.Show(cfg.ShowFormTitle ? "Form Title [Visible]" : "Form Title [Hide]", "AutoPatchPluginCL", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

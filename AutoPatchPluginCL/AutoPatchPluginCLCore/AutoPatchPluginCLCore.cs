@@ -34,8 +34,9 @@ namespace AutoPatchPluginCLCore
 		}
 
         public void Configure()
-		{
-			MessageBox.Show($"Not required configuration yet!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-		}
+        {
+            MessageBox.Show($"Edit controls now in the new window of Autopatch!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process.Start("AutoPatchPluginCL.exe", "--edit-layout").WaitForExit();
+        }
 	}
 }
