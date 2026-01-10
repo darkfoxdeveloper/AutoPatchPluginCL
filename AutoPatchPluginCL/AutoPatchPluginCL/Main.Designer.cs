@@ -95,26 +95,26 @@
             this.saveLayoutToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(241, 133);
+            this.contextMenu.Size = new System.Drawing.Size(210, 100);
             // 
             // showHideTitleToolStripMenuItem
             // 
             this.showHideTitleToolStripMenuItem.Name = "showHideTitleToolStripMenuItem";
-            this.showHideTitleToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.showHideTitleToolStripMenuItem.Size = new System.Drawing.Size(209, 32);
             this.showHideTitleToolStripMenuItem.Text = "Show/Hide Title";
             this.showHideTitleToolStripMenuItem.Click += new System.EventHandler(this.ShowHideTitleToolStripMenuItem_Click);
             // 
             // saveLayoutToolStripMenuItem
             // 
             this.saveLayoutToolStripMenuItem.Name = "saveLayoutToolStripMenuItem";
-            this.saveLayoutToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.saveLayoutToolStripMenuItem.Size = new System.Drawing.Size(209, 32);
             this.saveLayoutToolStripMenuItem.Text = "Save layout";
             this.saveLayoutToolStripMenuItem.Click += new System.EventHandler(this.SaveLayoutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(240, 32);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(209, 32);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
