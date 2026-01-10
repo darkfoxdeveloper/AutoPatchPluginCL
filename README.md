@@ -1,6 +1,9 @@
 # AutoPatchPluginCL
 AutoPatch Plugin for ConquerLoader
 
+<img width="800" height="1200" alt="image" src="https://github.com/user-attachments/assets/4ee21e35-3cbd-4079-80c7-6151deabb3c6" />
+
+
 ## Requeriments
 - ConquerLoader 1.0.0.9
 
