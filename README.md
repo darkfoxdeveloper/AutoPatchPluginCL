@@ -3,7 +3,7 @@ AutoPatch Plugin for ConquerLoader
 
 <img width="1024" height="1536" alt="Preview Promo" src="https://github.com/user-attachments/assets/59fb3117-5b5f-42e0-9e46-c8dd0d9c3219" />
 
-
+<img width="553" height="175" alt="image" src="https://github.com/user-attachments/assets/91281747-cec5-4fab-8d4c-442e1b21716d" />
 
 ## Requeriments
 - ConquerLoader 1.0.0.9
