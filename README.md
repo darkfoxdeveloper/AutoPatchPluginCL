@@ -2,9 +2,7 @@
 AutoPatch Plugin for ConquerLoader
 
 ## Requeriments
-- ConquerLoader 1.0.0.5 or upper (1.0.0.5+)
-- Knowledge about JSON
-- A little intelligence (:P)
+- ConquerLoader 1.0.0.9
 
 ## How to use
 1- Create a PatchList.json in your apache website folder. Example structure here: ![ExampleStructurePatchListJSON](https://i.ibb.co/Lvn71Lv/125979718-3472153672831781-1826451695129960471-n.jpg)\
@@ -13,6 +11,31 @@ AutoPatch Plugin for ConquerLoader
 4- Modify the AutoPatchPluginCLConfig.json and change the parameter PatchListUrl with your domain or if only is for testing you can use localhost, exemple: http://localhost/PatchList.json
 \
 5- All ready!
+
+## PathList.json example
+
+```
+{
+    "CurrentVersion": 3,
+    "Paths": [
+        {
+            "Version": 2,
+            "RelativeURL": "patch2.rar"
+        },
+        {
+            "Version": 3,
+            "RelativeURL": "patch3.rar"
+        },
+        {
+            "Version": 1,
+            "RelativeURL": "patch1.rar"
+        }
+    ]
+}
+```
+
+# Enable edit mode
+- Go to ConquerLoader > Settings > Plugins > AutoPatchPluginCL
 
 ## Compatible patch formats
 - Rar
